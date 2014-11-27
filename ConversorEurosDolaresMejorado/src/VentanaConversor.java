@@ -13,6 +13,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 
 public class VentanaConversor extends JFrame {
@@ -86,13 +88,15 @@ public class VentanaConversor extends JFrame {
 		
 		//JLabel que define el JTextField del mensaje.
 		lblMensaje = new JLabel("Mensaje");
-		lblMensaje.setBounds(10, 127, 86, 20);
+		lblMensaje.setBounds(10, 102, 80, 25);
 		contentPane.add(lblMensaje);
 		
 		//JTextField donde sale el mensaje.
 		textMensaje = new JTextField();
+		textMensaje.setForeground(Color.BLACK);
+		textMensaje.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textMensaje.setEditable(false);
-		textMensaje.setBounds(10, 158, 129, 20);
+		textMensaje.setBounds(10, 138, 120, 25);
 		contentPane.add(textMensaje);
 		textMensaje.setColumns(10);
 		
