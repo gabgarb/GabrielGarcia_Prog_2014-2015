@@ -4,10 +4,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -62,15 +65,19 @@ public class VentanaConversor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				float euros;
 				euros=Float.parseFloat(valorEuros.getText());
-				valorDolares.setText(String.valueOf(euros*valorConversion));
 				
+				try{
+
 				//CONDICION
 				if((euros<500)&&(euros>0)){
-					
+					valorDolares.setText(String.valueOf(euros*valorConversion));
 					textMensaje.setText("Cantidad Valida");
 				}else{
-					
 					textMensaje.setText("Cantidad No Valida");
+				}
+				
+				}catch(Exception e){
+					
 				}
 			}
 			});
