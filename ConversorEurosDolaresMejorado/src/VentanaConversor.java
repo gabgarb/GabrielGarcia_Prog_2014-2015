@@ -66,21 +66,23 @@ public class VentanaConversor extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				float euros;
-				euros=Float.parseFloat(valorEuros.getText());
+				
 				
 				try{
-
-				//CONDICION
-				if((euros<500)&&(euros>0)){
-					valorDolares.setText(String.valueOf(euros*valorConversion));
-					textMensaje.setText("Cantidad Valida");
-				}else{
-					textMensaje.setText("Cantidad No Valida");
-				}
+					
+					euros=Float.parseFloat(valorEuros.getText());
+				
+					//CONDICION
+					if((euros<500)&&(euros>0)){
+						valorDolares.setText(String.valueOf(euros*valorConversion));
+						textMensaje.setText("Cantidad Valida");
+					}else{
+						textMensaje.setText("Cantidad No Valida");
+					}
 				
 				}catch(Exception e){
-					
-				}
+					textMensaje.setText("Letra valor no valido");
+					}
 			}
 			});
 		btnNewButton.setBounds(129, 67, 113, 23);
