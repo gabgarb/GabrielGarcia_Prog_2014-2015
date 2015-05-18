@@ -4,15 +4,24 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.ImageIcon;
+
+import Controlador.MainController;
+import Modelo.UsuarioModelo;
 
 public class VistaPrincipal extends JPanel {
 	private JTextField textContraseña;
-
+	UsuarioModelo usuarios;
+	JComboBox boxUsuario;
 	/**
 	 * Create the panel.
 	 */
@@ -23,7 +32,7 @@ public class VistaPrincipal extends JPanel {
 		JButton botonJuegos = new JButton("JUEGOS >");
 		botonJuegos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				MainController.getInstance().();
 			}
 		});
 		botonJuegos.setBounds(224, 32, 179, 23);
@@ -46,7 +55,7 @@ public class VistaPrincipal extends JPanel {
 		add(lblUsuario);
 		
 		//JComboBox donde estaran los nombre de usuario
-		JComboBox boxUsuario = new JComboBox();
+		boxUsuario = new JComboBox();
 		boxUsuario.setBounds(26, 209, 121, 20);
 		add(boxUsuario);
 		
@@ -57,7 +66,7 @@ public class VistaPrincipal extends JPanel {
 		add(lblContraseña);
 		
 		//JTextFiel donde se introducira la contraseña
-		textContraseña = new JTextField();
+		textContraseña = new JPasswordField();
 		textContraseña.setBounds(26, 274, 121, 20);
 		add(textContraseña);
 		textContraseña.setColumns(10);
@@ -74,14 +83,30 @@ public class VistaPrincipal extends JPanel {
 		botonRegistrarse.setBounds(26, 352, 121, 23);
 		add(botonRegistrarse);
 		
+		//Jlabel que contiene la imagen.
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Gabriel\\Desktop\\icono.png"));
 		lblNewLabel.setBounds(39, 32, 139, 128);
 		add(lblNewLabel);
 		
+		//Rellenado del JComboBox
+		usuarios = new UsuarioModelo();
 		
+		Iterator<String> it=usuarios.getUsuarios().iterator();
+		while(it.hasNext()){
+			boxUsuario.addItem((String)it.next());
+		}
 		
 
+	}
+
+	//Añadir usuario
+	public void putUsuario(ArrayList<String> usuario) {
+		boxUsuario.removeAllItems();
+		for(String s:usuario){
+			boxUsuario.addItem(s);
+		}
+		this.repaint();
 	}
 }
