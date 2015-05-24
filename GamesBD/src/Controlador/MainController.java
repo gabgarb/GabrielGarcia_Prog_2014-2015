@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 
 import Modelo.ConexionDB;
+import Modelo.JuegosModel;
 import Modelo.User;
 import Modelo.UsuarioModelo;
 import Vista.VistaApp;
@@ -28,6 +29,8 @@ public class MainController {
 	private MainController() {
 		//Creamos la conexion con la base de datos
 		gamesDB=ConexionDB.getInstance("localhost","usuarios","root","panasonic");
+		//Creamos la ventana principal
+		vPrincipalApp = new VistaApp();
 		if(gamesDB.connectDB()==true) {
 			System.out.println("CONECTADOS CONEXITO");
 		}else{
@@ -51,12 +54,12 @@ public class MainController {
 		//Consultamos los usuarios
 		UsuarioModelo uModelo=new UsuarioModelo();
 		ArrayList<String> usuario=uModelo.getUsuarios();
-		//Lanzamos la ventana principal
-		vPrincipalApp = new VistaApp();
+		
 		//cargamso datos de usuarios
 		vPrincipalApp.showInicial(usuario);
 		//Hacemos visible la pantalla inicial
 		vPrincipalApp.setVisible(true);
+		vPrincipalApp.showVPrincipal();
 	}
 
 	//Lanzar usuarios
@@ -76,4 +79,9 @@ public class MainController {
 		vPrincipalApp.showVPrincipal();
 	}
 	
+	public void showVJuego() {
+		JuegosModel juegos = null;
+		if(juegos==null) juegos=new JuegosModel();
+		vPrincipalApp.showVJuego(juegos.getJuegos());
+	}
 }

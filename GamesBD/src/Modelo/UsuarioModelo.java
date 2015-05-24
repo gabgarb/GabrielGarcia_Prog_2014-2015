@@ -28,7 +28,9 @@ import java.util.ArrayList;
 				//Preparamos la peticion
 				instruccion = gamesDB.getConexion().createStatement();
 				conjuntoResultados = instruccion.executeQuery(USUARIOS_SEL);
-				//Recorremos los usuarios y los almacenamos en un ArrayList
+				
+				usuarios.clear();
+				
 				//Listaremos por pantalla los datos
 				while(conjuntoResultados.next()){
 					usuarios.add(conjuntoResultados.getString("usuario"));

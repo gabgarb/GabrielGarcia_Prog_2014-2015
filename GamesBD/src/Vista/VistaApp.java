@@ -13,11 +13,13 @@ import javax.swing.JMenu;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 
 import Controlador.MainController;
+
 import javax.swing.JToolBar;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -27,8 +29,8 @@ public class VistaApp extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel ventanas;
-	private VistaPrincipal iPrincipal;
-	private VistaJuego iJuego;
+	VistaPrincipal iPrincipal;
+	VistaJuego iJuegos;
 
 	/**
 	 * Create the frame.
@@ -45,9 +47,25 @@ public class VistaApp extends JFrame {
 		JMenu menuPrincipal = new JMenu("Principal");
 		menuBar.add(menuPrincipal);
 		
+		JMenuItem mntmPrincipal = new JMenuItem("Principal");
+		menuPrincipal.add(mntmPrincipal);
+		mntmPrincipal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainController.getInstance().showPrincipal();
+			}
+		});
+		
 		//Submenu del menu principal
 		JMenu menuJuegos = new JMenu("Juegos");
 		menuBar.add(menuJuegos);
+		
+		JMenuItem mntmJuegos = new JMenuItem("Juegos");
+		menuJuegos.add(mntmJuegos);
+		mntmJuegos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainController.getInstance().showVJuego();
+			}
+		});
 		
 		//Submenu del menu principal
 		JMenu menuPerfil = new JMenu("Perfil");
@@ -75,8 +93,9 @@ public class VistaApp extends JFrame {
 		iPrincipal = new VistaPrincipal();
 		ventanas.add(iPrincipal,"Principal");
 				
-		iJuego = new VistaJuego();
-		ventanas.add(iJuego, "Juegos");
+		iJuegos = new VistaJuego();
+		ventanas.add(iJuegos, "Juegos");
+		
 
 	}
 
@@ -89,14 +108,15 @@ public class VistaApp extends JFrame {
 
 	//Muestra los diferennt
 	public void showVPrincipal() {
-		CardLayout c= (CardLayout) this.contentPane.getLayout();
+		CardLayout c= (CardLayout) this.ventanas.getLayout();
 		c.show(ventanas, "Principal");
 	}
 
 
 
-	public void showVJuego(Object usuario) {
-		CardLayout c= (CardLayout) this.contentPane.getLayout();
+	public void showVJuego(ArrayList juegos) {
+		iJuegos.putJuegos(juegos);
+		CardLayout c= (CardLayout) this.ventanas.getLayout();
 		c.show(ventanas, "Juegos");
 		
 	}

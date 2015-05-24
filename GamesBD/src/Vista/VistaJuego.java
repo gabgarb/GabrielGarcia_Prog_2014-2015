@@ -1,18 +1,35 @@
 package Vista;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Component;
+
 import javax.swing.Box;
+
+import java.awt.ScrollPane;
+
+import javax.swing.JScrollPane;
+
+import Modelo.Game;
+
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class VistaJuego extends JPanel {
 	private JTextField textNombJu;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JList list;
+	private DefaultListModel listModel;
 
 	/**
 	 * Create the panel.
@@ -92,8 +109,20 @@ public class VistaJuego extends JPanel {
 		btnSalvar.setBounds(233, 329, 169, 23);
 		add(btnSalvar);
 		
-		
+		listModel = new DefaultListModel();
+		list = new JList(listModel);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		}
+			
 
-
-	}
+		public void putJuegos (ArrayList juegos) {
+		Iterator<Game> it=juegos.iterator();
+		listModel.removeAllElements();
+		while(it.hasNext()){
+			Game game=(Game)it.next();
+			listModel.addElement(game.getNombre());
+			}
+		}
 }
+
+

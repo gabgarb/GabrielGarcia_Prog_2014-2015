@@ -32,7 +32,7 @@ public class VistaPrincipal extends JPanel {
 		JButton botonJuegos = new JButton("JUEGOS >");
 		botonJuegos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainController.getInstance().();
+				MainController.getInstance().showVJuego();
 			}
 		});
 		botonJuegos.setBounds(224, 32, 179, 23);
@@ -89,14 +89,6 @@ public class VistaPrincipal extends JPanel {
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Gabriel\\Desktop\\icono.png"));
 		lblNewLabel.setBounds(39, 32, 139, 128);
 		add(lblNewLabel);
-		
-		//Rellenado del JComboBox
-		usuarios = new UsuarioModelo();
-		
-		Iterator<String> it=usuarios.getUsuarios().iterator();
-		while(it.hasNext()){
-			boxUsuario.addItem((String)it.next());
-		}
 		
 
 	}
