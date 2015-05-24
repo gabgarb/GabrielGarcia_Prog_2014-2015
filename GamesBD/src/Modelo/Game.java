@@ -26,8 +26,14 @@ public class Game {
 	public String getPlataforma(){
 		return this.plataforma;
 	}
-	public String getDescripcion(){
+	public String toString(){
+		return this.nombre;
+	}
+	public String getDescripcion() {
 		return this.descripcion;
+	}
+	public int getId() {
+		return this.id;
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.ietf.jgss.GSSName;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 
 public class JuegosModel<juegos> {
 
@@ -18,6 +19,9 @@ public class JuegosModel<juegos> {
 	private final static String GENRE_COL="genero";
 	private final static String PLATAFORM_COL="plataforma";
 	private final static String DESCRIPTION_COL="descripcion";
+	
+	//Update juego.
+	private final static String GAME_UPDATE="UPDATE juegos set "+NAME_COL+"=?,"+GENRE_COL+"=?,"+PLATAFORM_COL+"=? WHERE id"+"=?";
 	
 	//Conexion
 	private Connection conexion = null;
@@ -63,7 +67,25 @@ public class JuegosModel<juegos> {
 			catch( SQLException excepcionSql )
 			{
 			excepcionSql.printStackTrace();
+			return juegos;
 			}
 		}
+			
+	}
+
+	public void updateJuego(Game game) {
+		try{
+			PreparedStatement pst = (PreparedStatement) this.conexion.prepareStatement(GAME_UPDATE);
+			pst.setString(1, game.getNombre());
+			pst.setString(2, game.getGenero());
+			pst.setString(3, game.getPlataforma());
+			pst.setInt(4, game.getId());
+			pst.executeUpdate();
+		}
+		catch( SQLException excepcionSql )
+		{
+			excepcionSql.printStackTrace();
+		}
+		
 	}
 }

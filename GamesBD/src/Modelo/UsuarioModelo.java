@@ -41,7 +41,6 @@ import java.util.ArrayList;
 			}
 			finally{
 				try{
-					conjuntoResultados.close();
 					instruccion.close();
 				}
 				catch(SQLException excepcionSql){
