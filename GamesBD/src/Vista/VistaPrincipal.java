@@ -19,9 +19,9 @@ import Controlador.MainController;
 import Modelo.UsuarioModelo;
 
 public class VistaPrincipal extends JPanel {
-	private JTextField textContraseña;
 	UsuarioModelo usuarios;
 	JComboBox boxUsuario;
+	private JTextField textField;
 	/**
 	 * Create the panel.
 	 */
@@ -65,21 +65,24 @@ public class VistaPrincipal extends JPanel {
 		lblContraseña.setBounds(26, 240, 100, 23);
 		add(lblContraseña);
 		
-		//JTextFiel donde se introducira la contraseña
-		textContraseña = new JPasswordField();
-		textContraseña.setBounds(26, 274, 121, 20);
-		add(textContraseña);
-		textContraseña.setColumns(10);
-		
 		//JButton que cargara el usuario
 		JButton botonLogin = new JButton("LogIn");
-		botonLogin.setEnabled(false);
+		botonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainController.getInstance().logar();
+			}
+		});
+		
+		//JTextField donde se introduce la contraseña.
+		textField = new JTextField();
+		textField.setBounds(26, 274, 121, 20);
+		add(textField);
+		textField.setColumns(10);
 		botonLogin.setBounds(26, 318, 121, 23);
 		add(botonLogin);
 		
 		//JButton que nos registrara como nuevo usuario
 		JButton botonRegistrarse = new JButton("Registrarse");
-		botonRegistrarse.setEnabled(false);
 		botonRegistrarse.setBounds(26, 352, 121, 23);
 		add(botonRegistrarse);
 		

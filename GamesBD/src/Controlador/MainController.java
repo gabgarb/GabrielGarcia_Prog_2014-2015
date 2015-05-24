@@ -81,7 +81,16 @@ public class MainController {
 	
 	public void showVJuego() {
 		JuegosModel juegos = null;
+		if(this.auth.estaLogado()){
 		if(juegos==null) juegos=new JuegosModel();
 		vPrincipalApp.showVJuego(juegos.getJuegos());
+		}else{
+			
+		}
+	}
+
+	public void logar() {
+		this.auth.comprobarUser();
+		this.showVJuego();
 	}
 }

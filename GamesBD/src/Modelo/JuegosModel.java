@@ -61,8 +61,9 @@ public class JuegosModel<juegos> {
 				instruccion.close();
 			}
 			catch( SQLException excepcionSql )
+			{
+			excepcionSql.printStackTrace();
+			}
 		}
-		excepcionSql.printStackTrace();
-		
 	}
 }

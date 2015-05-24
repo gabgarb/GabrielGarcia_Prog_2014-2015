@@ -20,5 +20,14 @@ public class Game {
 	public String getNombre(){
 		return this.nombre;
 	}
+	public String getGenero(){
+		return this.genero;
+	}
+	public String getPlataforma(){
+		return this.plataforma;
+	}
+	public String getDescripcion(){
+		return this.descripcion;
+	}
 
 }
